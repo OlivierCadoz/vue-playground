@@ -2,9 +2,11 @@
 import TaskFormModal from './components/organisms/TaskFormModal.vue';
 import ButtonVP from './components/atoms/ButtonVP.vue';
 import { useTask } from './composables/useTask';
+import { useTaskForm } from './composables/useTaskForm';
 import TaskView from './components/organisms/TaskView.vue';
 
-const { showTaskForm, addTask, toggleTaskForm } = useTask();
+const { addTask } = useTask();
+const { showTaskForm, toggleTaskForm } = useTaskForm();
 
 const submitForm = (task) => {
   addTask(task);
@@ -14,12 +16,18 @@ const submitForm = (task) => {
 
 <template>
   <main>
-    <h1>TODO KANBAN</h1>
+    <h1>TO DO KANBAN</h1>
 
-    <ButtonVP @click="toggleTaskForm">Ajouter +</ButtonVP>
+    <ButtonVP @click.stop="toggleTaskForm">Ajouter +</ButtonVP>
 
     <TaskView />
 
     <TaskFormModal v-if="showTaskForm" @submitForm="submitForm" />
   </main>
 </template>
+
+<style lang="scss">
+.vp-button {
+  align-self: flex-start;
+}
+</style>
