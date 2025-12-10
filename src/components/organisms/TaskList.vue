@@ -13,8 +13,8 @@ const { tasks } = defineProps({
 
 <template>
   <ListVP>
-    <ListItemVP v-for="item in tasks">
-      {{item.task}}
+    <ListItemVP v-for="task in tasks">
+      {{task.todo}}
     </ListItemVP>
   </ListVP>
 </template>

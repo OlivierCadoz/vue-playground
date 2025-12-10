@@ -12,3 +12,31 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app,
+main {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  padding: 16px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
