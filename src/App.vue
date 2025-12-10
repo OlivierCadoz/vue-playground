@@ -11,8 +11,8 @@ const addTask = (event) => {
 </script>
 
 <template>
-  <div>
+  <main>
     <FormVP @submitForm="addTask" />
     <TaskList :tasks="items" />
-  </div>
+  </main>
 </template>

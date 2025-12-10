@@ -1,23 +1,27 @@
 <script setup>
-import { ref, defineEmits } from 'vue'
+import { ref, computed } from 'vue'
 
 import InputLabeledVP from '../molecules/InputLabeledVP.vue';
 import ButtonVP from '../atoms/ButtonVP.vue';
 
-const emits = defineEmits(['submitForm'])
+const emit = defineEmits(['submitForm'])
 
 const modelValue = ref('')
 
+const isEmpty = computed(() => !modelValue.value.trim())
+
 const submitForm = () => {
-  emits('submitForm', modelValue.value)
-  modelValue.value = ""
+  const value = modelValue.value.trim()
+  if (!value) return
+  emit('submitForm', value)
+  modelValue.value = ''
 }
 
 </script>
 
 <template>
   <form @submit.prevent="submitForm">
-    <InputLabeledVP v-model="modelValue">Add task :</InputLabeledVP>
-    <ButtonVP type="submit">Add</ButtonVP>
+    <InputLabeledVP v-model="modelValue" required>Add task :</InputLabeledVP>
+    <ButtonVP type="submit" :disabled="isEmpty">Add</ButtonVP>
   </form>
 </template>

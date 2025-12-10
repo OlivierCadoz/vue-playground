@@ -1,6 +1,6 @@
 <script setup>
-const { for } = defineProps({
-  for: {
+const { name } = defineProps({
+  name: {
     type: String,
     default: ''
   }
@@ -8,5 +8,5 @@ const { for } = defineProps({
 </script>
 
 <template>
-  <label :for="for"><slot /></label>
+  <label :for="name"><slot /></label>
 </template>

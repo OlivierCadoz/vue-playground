@@ -6,6 +6,10 @@ const { name } = defineProps({
   name: {
     type: String,
     default: ''
+  },
+  required: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -13,6 +17,6 @@ const model = defineModel()
 </script>
 
 <template>
-  <LabelVP for="name"><slot /></LabelVP>
-  <InputVP :name="name" v-model="model" />
+  <LabelVP :name="name"><slot /></LabelVP>
+  <InputVP v-model="model" :name="name" :required="required" />
 </template>
