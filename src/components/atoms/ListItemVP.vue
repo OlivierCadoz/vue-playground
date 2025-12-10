@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li class="vp-list-item">
     <slot />
   </li>
 </template>

@@ -8,5 +8,5 @@ const { name } = defineProps({
 </script>
 
 <template>
-  <label :for="name"><slot /></label>
+  <label :for="name" class="vp-label"><slot /></label>
 </template>

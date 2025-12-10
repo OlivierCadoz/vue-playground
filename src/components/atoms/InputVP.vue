@@ -14,5 +14,5 @@ const model = defineModel()
 </script>
 
 <template>
-  <input v-model="model" :type="type" :name="name" />
+  <input v-model="model" :type="type" :name="name" class="vp-input" />
 </template>
