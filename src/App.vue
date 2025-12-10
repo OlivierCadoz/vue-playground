@@ -1,18 +1,17 @@
 <script setup>
-import { reactive } from 'vue';
 import FormVP from './components/organisms/FormVP.vue';
 import TaskList from './components/organisms/TaskList.vue';
+import ButtonVP from './components/atoms/ButtonVP.vue';
+import { useTask } from './composables/useTask';
 
-const items = reactive([]);
+const { tasks, showTaskForm, addTask, toggleTaskForm } = useTask();
 
-const addTask = (event) => {
-  items.push({ task: event });
-}
 </script>
 
 <template>
   <main>
-    <FormVP @submitForm="addTask" />
-    <TaskList :tasks="items" />
+    <ButtonVP @click="toggleTaskForm">Ajouter +</ButtonVP>
+    <FormVP v-if="showTaskForm" @submitForm="addTask" />
+    <TaskList :tasks="tasks" />
   </main>
 </template>
