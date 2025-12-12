@@ -1,22 +1,26 @@
 <script setup>
+import { useDragAndDrop } from '../../composables/useDragAndDrop';
+
 import { useTask } from '../../composables/useTask';
 
 import TaskList from './TaskList.vue';
 
-const { todos, doings, dones } = useTask();
+const { tasks, todos, doings, dones } = useTask();
+useDragAndDrop(tasks);
+
 </script>
 
 <template>
   <ul class="task-view">
-    <li class="task-view-item">
+    <li class="task-column">
       <h2>To do</h2>
       <TaskList :tasks="todos" />
     </li>
-    <li class="task-view-item">
+    <li class="task-column">
       <h2>In progress</h2>
       <TaskList :tasks="doings" />
     </li>
-    <li class="task-view-item">
+    <li class="task-column">
       <h2>Done</h2>
       <TaskList :tasks="dones" />
     </li>
@@ -30,7 +34,7 @@ const { todos, doings, dones } = useTask();
   justify-content: space-between;
   gap: 16px;
 
-  .task-view-item {
+  .task-column {
     width: 30%;
     background-color: #817f7f;
     padding: 16px;

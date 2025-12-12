@@ -1,6 +1,12 @@
-import { ref, reactive, computed } from 'vue';
+import { reactive, computed } from 'vue';
 
-const tasks = reactive([]);
+const tasks = reactive([
+  {
+    id: 0,
+    todo: 'ok',
+    status: 'todo',
+  },
+]);
 
 const filterTaskByStatus = (status) =>
   tasks.filter((task) => task.status === status);
@@ -13,7 +19,11 @@ export function useTask() {
   const dones = computed(() => filterTaskByStatus('done'));
 
   const addTask = (event) => {
-    tasks.push({ todo: event, status: 'todo' });
+    tasks.push({
+      id: tasks.length,
+      todo: event,
+      status: 'todo',
+    });
   };
 
   return {
