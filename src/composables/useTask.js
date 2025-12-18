@@ -1,9 +1,9 @@
-import { reactive, computed } from 'vue';
+import { shallowReactive, computed } from 'vue';
 
-const tasks = reactive([
+const tasks = shallowReactive([
   {
     id: 0,
-    todo: 'ok',
+    title: 'ok',
     status: 'todo',
   },
 ]);
@@ -21,9 +21,15 @@ export function useTask() {
   const addTask = (event) => {
     tasks.push({
       id: tasks.length,
-      todo: event,
+      title: event,
       status: 'todo',
     });
+  };
+
+  const updateTask = (taskId, status) => {
+    const task = tasks.find((task) => task.id === taskId);
+
+    if (task) task.status = status;
   };
 
   return {
@@ -32,5 +38,6 @@ export function useTask() {
     doings,
     dones,
     addTask,
+    updateTask,
   };
 }

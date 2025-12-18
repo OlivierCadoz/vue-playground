@@ -15,10 +15,11 @@ const { tasks } = defineProps({
     <ListItemVP
       v-for="task in tasks"
       :key="task.id"
+      :data-id="task.id"
       class="task-item"
       draggable="true"
     >
-      {{ task.todo }}
+      {{ task.title }}
     </ListItemVP>
   </ListVP>
 </template>

@@ -2,7 +2,7 @@ import { onMounted, onUpdated } from 'vue';
 
 let tasks = [];
 
-const initColumnDragAndDrop = () => {
+const initColumnDragAndDrop = (updateTask) => {
   const columns = document.querySelectorAll('.task-column');
   columns.forEach((column) => {
     column.addEventListener('dragover', (event) => {
@@ -15,6 +15,10 @@ const initColumnDragAndDrop = () => {
       event.preventDefault();
 
       const draggedTask = document.getElementById('dragged-task');
+      const draggedTaskId = Number(draggedTask.getAttribute('data-id'));
+      const columnId = column.getAttribute('data-id');
+
+      updateTask(draggedTaskId, columnId);
       draggedTask.remove();
       column.children[1].appendChild(draggedTask);
     });
@@ -34,9 +38,9 @@ const initTaskDragAndDrop = () => {
   });
 };
 
-export function useDragAndDrop(taskList) {
+export function useDragAndDrop(taskList, updateTask) {
   onMounted(() => {
-    initColumnDragAndDrop();
+    initColumnDragAndDrop(updateTask);
     initTaskDragAndDrop();
   });
 
