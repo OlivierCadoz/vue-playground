@@ -38,16 +38,23 @@ const initTaskDragAndDrop = () => {
   });
 };
 
-export function useDragAndDrop(taskList, updateTask) {
-  onMounted(() => {
-    initColumnDragAndDrop(updateTask);
-    initTaskDragAndDrop();
-  });
-
-  onUpdated(() => {
-    if (taskList.length !== tasks.length) {
-      tasks.forEach((task) => task.removeEventListener('dragstart', () => {}));
+export function useDragAndDrop() {
+  const initDragAndDrop = (taskList, updateTask) => {
+    onMounted(() => {
+      initColumnDragAndDrop(updateTask);
       initTaskDragAndDrop();
-    }
-  });
+    });
+
+    onUpdated(() => {
+      const tasksHasChanged = taskList.length !== tasks.length;
+      if (tasksHasChanged) {
+        tasks.forEach((task) =>
+          task.removeEventListener('dragstart', () => {})
+        );
+        initTaskDragAndDrop();
+      }
+    });
+  };
+
+  return { initDragAndDrop };
 }

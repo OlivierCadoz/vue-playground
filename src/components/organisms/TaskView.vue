@@ -6,7 +6,9 @@ import { useTask } from '../../composables/useTask';
 import TaskList from './TaskList.vue';
 
 const { tasks, todos, doings, dones, updateTask } = useTask();
-useDragAndDrop(tasks, updateTask);
+const { initDragAndDrop } = useDragAndDrop();
+
+initDragAndDrop(tasks, updateTask);
 
 </script>
 
